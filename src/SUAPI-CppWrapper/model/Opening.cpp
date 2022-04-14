@@ -60,7 +60,7 @@ Opening::Opening(const Opening& other)
 Opening::~Opening()
 {
   if (!!(*this) && m_opening.use_count() < 2) {
-    SU_RESULT res = SUOpeningRelease(m_opening.get());
+      SUResult res = SUOpeningRelease(m_opening.get());
     assert (res != SU_ERROR_INVALID_INPUT);
   }
 }
@@ -74,7 +74,7 @@ bool Opening::operator!() const {
 Opening& Opening::operator=(const Opening& other) {
   // Destroy this object if there are no other references
   if (!!(*this) && m_opening.use_count() < 2) {
-    SU_RESULT res = SUOpeningRelease(m_opening.get());
+      SUResult res = SUOpeningRelease(m_opening.get());
     if (res == SU_ERROR_INVALID_INPUT) {
       throw std::logic_error("CW::Opening::operator=(): Opening reference is invalid.  The code may point to dereferenced pointer.");
     }
@@ -93,7 +93,7 @@ size_t Opening::get_num_points() const {
     throw std::logic_error("CW::Opening::get_num_points(): Opening is invalid");
   }
   size_t count = 0;
-  SU_RESULT res = SUOpeningGetNumPoints(*m_opening.get(), &count);
+  SUResult res = SUOpeningGetNumPoints(*m_opening.get(), &count);
   if (res == SU_ERROR_NULL_POINTER_OUTPUT) {
     throw std::logic_error("CW::Opening::get_num_points(): points or count is NULL");
   }
@@ -109,7 +109,7 @@ std::vector<Point3D> Opening::get_points() const {
   size_t count = this->get_num_points();
   std::vector<SUPoint3D> points_array(count);
   size_t count_returned = 0;
-  SU_RESULT res = SUOpeningGetPoints(*m_opening.get(), count, points_array.data(), &count_returned);
+  SUResult res = SUOpeningGetPoints(*m_opening.get(), count, points_array.data(), &count_returned);
   if (res == SU_ERROR_NULL_POINTER_OUTPUT) {
     throw std::logic_error("CW::Opening::get_points(): points or count is NULL");
   }

@@ -120,7 +120,7 @@ double Radians::difference(const Radians& other) const {
 
 // Comparator TODO
 bool Radians::closest(const Radians& value) {
-  return Radians(m_val - value);
+  return std::fabs(m_val - value)<EPSILON;
 }
 
 /********

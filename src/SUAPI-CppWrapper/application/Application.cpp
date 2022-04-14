@@ -33,6 +33,7 @@
 
 #include <cassert>
 #include <stdexcept>
+#include "SketchUpAPI/common.h"
 
 namespace CW {
 /**************************
@@ -40,7 +41,7 @@ namespace CW {
 ***************************/
 Model get_active_model() {
   SUModelRef model_ref = SU_INVALID;
-  SU_RESULT res = SUApplicationGetActiveModel(&model_ref);
+  SUResult res = SUApplicationGetActiveModel(&model_ref);
   if (res == SU_ERROR_NO_DATA) {
     throw std::logic_error("CW::Application::get_active_model(): There is no active model open");
   }

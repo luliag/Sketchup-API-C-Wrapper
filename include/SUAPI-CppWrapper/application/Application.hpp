@@ -33,7 +33,7 @@
 
 namespace CW {
   // Forward Declarations:
-  class Model
+    class Model;
 
 class Application {
 
@@ -44,7 +44,7 @@ class Application {
   */
   static Model get_active_model();
   
-} /* class Application */
+  }; /* class Application */
 
 } /* namespace CW */
 

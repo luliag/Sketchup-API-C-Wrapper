@@ -107,7 +107,7 @@ Curve::operator bool() const {
 
 
 bool Curve::operator!() const {
-  return !bool(this);
+  return !bool();
 }
 
 } /* namespace CW */
